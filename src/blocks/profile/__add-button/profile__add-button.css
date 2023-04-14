@@ -1,0 +1,24 @@
+.profile__add-button {
+  border: 2px solid #ffffff;
+  border-radius: 2px;
+  width: 150px;
+  height: 50px;
+  background-color: #000;
+  opacity: 1;
+  transition: opacity 0.3s;
+  cursor: pointer;
+  margin: 0 0 0 auto;
+}
+
+.profile__add-button:hover {
+  opacity: 0.7;
+  transition: 0.1s;
+}
+
+/* Точка перелома между 320 и 1280 */
+@media screen and (max-width: 740px) {
+  .profile__add-button {
+    width: 100%;
+    margin-top: 36px;
+  }
+}

@@ -1,0 +1,11 @@
+.profile__block {
+  display: flex;
+  align-items: center;
+}
+
+/* Точка перелома между 320 и 1280 */
+@media screen and (max-width: 740px) {
+  .profile__block {
+    flex-direction: column;
+  }
+}

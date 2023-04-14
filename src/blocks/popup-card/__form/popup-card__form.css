@@ -1,0 +1,14 @@
+.popup-card__form {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 54px 0 0;
+}
+
+/* Точка перелома между 320 и 1280 */
+@media screen and (max-width: 740px) {
+  .popup-card__form {
+    margin-top: 75px;
+  }
+}

@@ -1,0 +1,50 @@
+.popup-photo__close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-image: url(../../../images/close.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  top: -32px;
+  left: 94%;
+  cursor: pointer;
+}
+
+/* Точка перелома */
+@media screen and (max-width: 900px) {
+  .popup-photo__close {
+    left: 93%;
+  }
+}
+
+/* Точка перелома */
+@media screen and (max-width: 740px) {
+  .popup-photo__close {
+    width: 20px;
+    height: 20px;
+    left: 96%;
+  }
+}
+
+/* Точка перелома */
+@media screen and (max-width: 500px) {
+  .popup-photo__close {
+    left: 95%;
+  }
+}
+
+/* Точка перелома */
+@media screen and (max-width: 400px) {
+  .popup-photo__close {
+    left: 94%;
+  }
+}
+
+/* Точка перелома */
+@media screen and (max-width: 320px) {
+  .popup-photo__close {
+    left: 93%;
+  }
+}

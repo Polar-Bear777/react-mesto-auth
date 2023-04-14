@@ -1,0 +1,16 @@
+.popup-photo__container {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  transition: 0.1s;
+  box-sizing: border-box;
+  position: relative;
+  padding: 16px 16px;
+}
+
+/* Точка перелома между 320 и 1280 */
+@media screen and (max-width: 740px) {
+  .popup-photo__container {
+    padding: 8px 0;
+  }
+}

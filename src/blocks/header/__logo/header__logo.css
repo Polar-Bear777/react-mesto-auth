@@ -1,0 +1,12 @@
+.header__logo {
+  margin: 0 0 41px;
+}
+
+/* Точка перелома между 320 и 1280 */
+@media screen and (max-width: 740px) {
+  .header__logo {
+    max-width: 103px;
+    margin-bottom: 32px;
+    margin-left: 27px;
+  }
+}

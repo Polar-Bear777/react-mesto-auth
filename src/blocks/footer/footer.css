@@ -1,0 +1,14 @@
+.footer {
+  max-width: 880px;
+  width: 100%;
+  margin: 67px auto 60px;
+}
+
+/* Точка перелома между 320 и 1280 */
+@media screen and (max-width: 740px) {
+  .footer {
+    max-width: 282px;
+    margin-top: 48px;
+    margin-bottom: 36px;
+  }
+}

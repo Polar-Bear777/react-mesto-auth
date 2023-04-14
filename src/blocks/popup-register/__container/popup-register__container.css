@@ -1,0 +1,12 @@
+.popup-register__container {
+    border-radius: 10px;
+    display: flex;
+    background: #fff;
+    flex-direction: column;
+    transition: 0.1s;
+    box-sizing: border-box;
+    position: relative;
+    padding: 34px 36px 37px;
+    width: 430px;
+    height: 330px;
+}

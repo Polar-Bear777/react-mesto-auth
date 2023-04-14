@@ -1,0 +1,18 @@
+.header__text {
+  margin: 0;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: right;
+  color: #fff;
+  }
+  
+@media screen and (min-width: 1280px){
+  .header__text{
+    margin: 0;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

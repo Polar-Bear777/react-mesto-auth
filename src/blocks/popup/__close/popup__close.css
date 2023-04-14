@@ -1,0 +1,22 @@
+.popup__close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-image: url(../../../images/close.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  top: -32px;
+  left: 100%;
+  cursor: pointer;
+}
+
+/* Точка перелома между 320 и 1280 */
+@media screen and (max-width: 740px) {
+  .popup__close {
+    width: 20px;
+    height: 20px;
+    left: 262px;
+  }
+}

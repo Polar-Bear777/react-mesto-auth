@@ -1,0 +1,7 @@
+.elements__container {
+  display: flex;
+  justify-content: space-between;
+  margin: 5% 15px 0 21px;
+  max-width: 246px;
+  min-height: 23px;
+}

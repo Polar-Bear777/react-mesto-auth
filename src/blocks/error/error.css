@@ -1,0 +1,11 @@
+.error {
+  display: block;
+  padding-top: 2px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  font-family: "Inter";
+  color: #000000;
+  min-height: 30px;
+}

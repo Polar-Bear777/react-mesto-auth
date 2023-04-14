@@ -1,0 +1,17 @@
+.elements {
+  display: grid;
+  max-width: 880px;
+  grid-template-columns: repeat(3, minmax(min-content, max-content));
+  row-gap: 20px;
+  column-gap: 17px;
+  margin: 46px auto 0;
+}
+
+/* Точка перелома между 320 и 1280 */
+@media screen and (max-width: 740px) {
+  .elements {
+    max-width: 282px;
+    grid-template-columns: repeat(1, minmax(min-content, max-content));
+    margin-top: 36px;
+  }
+}

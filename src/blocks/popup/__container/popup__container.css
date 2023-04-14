@@ -1,0 +1,20 @@
+.popup__container {
+  border-radius: 10px;
+  display: flex;
+  background: #fff;
+  flex-direction: column;
+  transition: 0.1s;
+  box-sizing: border-box;
+  position: relative;
+  padding: 34px 36px 37px;
+  width: 430px;
+}
+
+/* Точка перелома между 320 и 1280 */
+@media screen and (max-width: 740px) {
+  .popup__container {
+    padding: 25px 22px 25px;
+    width: 282px;
+    max-height: 330px;
+  }
+}
