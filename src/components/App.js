@@ -52,42 +52,52 @@ function App() {
 
   // РЕГИСТРАЦИЯ
   function onRegister(email, password) {
-    auth.registerUser(email, password).then(() => {
-      setPopupImage(resolve);
-      setPopupTitle("Вы успешно зарегистрировались!");
-      navigate("/sign-in");
-    }).catch(() => {
-      setPopupImage(reject);
-      setPopupTitle("Что-то пошло не так! Попробуйте ещё раз.");
-    }).finally(handleInfoTooltip);
+    auth
+      .registerUser(email, password)
+      .then(() => {
+        setPopupImage(resolve);
+        setPopupTitle("Вы успешно зарегистрировались!");
+        navigate("/sign-in");
+      })
+      .catch(() => {
+        setPopupImage(reject);
+        setPopupTitle("Что-то пошло не так! Попробуйте ещё раз.");
+      })
+      .finally(handleInfoTooltip);
   }
 
   // ВХОД
   function onLogin(email, password) {
-    auth.loginUser(email, password).then((res) => {
-      localStorage.setItem("jwt", res.token);
-      setIsLoggedIn(true);
-      setEmailName(email);
-      navigate("/");
-    }).catch(() => {
-      setPopupImage(reject);
-      setPopupTitle("Что-то пошло не так! Попробуйте ещё раз.");
-      handleInfoTooltip();
-    });
+    auth
+      .loginUser(email, password)
+      .then((res) => {
+        localStorage.setItem("jwt", res.token);
+        setIsLoggedIn(true);
+        setEmailName(email);
+        navigate("/");
+      })
+      .catch(() => {
+        setPopupImage(reject);
+        setPopupTitle("Что-то пошло не так! Попробуйте ещё раз.");
+        handleInfoTooltip();
+      });
   }
 
   // ПОСЛЕ ПЕРЕЗАГРУЗКИ СТРАНИЦЫ, НЕ ТРЕБУЕТСЯ АВТОРИЗАЦИЯ
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
-      auth.getToken(jwt).then((res) => {
-        if (res) {
-          setIsLoggedIn(true);
-          setEmailName(res.data.email);
-        }
-      }).catch((err) => {
-        console.error(err);
-      });
+      auth
+        .getToken(jwt)
+        .then((res) => {
+          if (res) {
+            setIsLoggedIn(true);
+            setEmailName(res.data.email);
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     }
   }, []);
 
@@ -100,7 +110,10 @@ function App() {
 
   // Обновление после каждого получения массива с данными
   useEffect(() => {
-    // Получим данные с сервера
+    // Получим данные с сервера, если loggedIn = true
+    if (isLoggedIn === false) {
+      return;
+    }
     api
       .getUserInfo()
       .then((res) => {
@@ -118,8 +131,7 @@ function App() {
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
       });
-  }, []);
-
+  }, [isLoggedIn]);
 
   // Попап PROFILE
   function handleEditProfileClick() {
@@ -235,7 +247,7 @@ function App() {
   }
 
   function handlePopupCloseClick(evt) {
-    if (evt.target.classList.contains('popup_is-opened')) {
+    if (evt.target.classList.contains("popup_is-opened")) {
       closeAllPopups();
     }
   }
@@ -243,25 +255,34 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-          <Routes>
-            {/* ВХОД */}
-            <Route path="/sign-in" element={
+        <Routes>
+          {/* ВХОД */}
+          <Route
+            path="/sign-in"
+            element={
               <>
-                <Header title="Регистрация" route="/sign-up"/>
-                <Login onLogin={onLogin}/>
+                <Header title="Регистрация" route="/sign-up" />
+                <Login onLogin={onLogin} />
               </>
-            }/>
+            }
+          />
 
-            {/* РЕГИСТРАЦИЯ */}
-            <Route path="/sign-up" element={
+          {/* РЕГИСТРАЦИЯ */}
+          <Route
+            path="/sign-up"
+            element={
               <>
-                <Header title="Войти" route="/sign-in"/>
+                <Header title="Войти" route="/sign-in" />
                 <Register onRegister={onRegister} />
               </>
-            }/>
+            }
+          />
 
-            {/* АВТОРИЗАЦИЯ */}
-            <Route exact path="/" element={
+          {/* АВТОРИЗАЦИЯ */}
+          <Route
+            exact
+            path="/"
+            element={
               <>
                 <Header title="Выйти" mail={emailName} onClick={onSignOut} route="" />
                 <ProtectedRoute
@@ -277,33 +298,34 @@ function App() {
                 />
                 <Footer />
               </>
-            }/>
+            }
+          />
 
-            <Route path="*" element={<Navigate to={isLoggedIn ? "/" : "/sign-in"}/>} />
-          </Routes>
+          <Route path="*" element={<Navigate to={isLoggedIn ? "/" : "/sign-in"} />} />
+        </Routes>
 
         {/* PROFILE */}
-        <EditProfilePopup 
-          isOpen={isEditProfilePopupOpen} 
-          onClose={closeAllPopups} 
+        <EditProfilePopup
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
-          onCloseClick={handlePopupCloseClick} 
+          onCloseClick={handlePopupCloseClick}
         />
 
         {/* AVATAR */}
-        <EditAvatarPopup 
+        <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
-          onClose={closeAllPopups} 
+          onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
-          onCloseClick={handlePopupCloseClick} 
+          onCloseClick={handlePopupCloseClick}
         />
 
         {/* ADD_PHOTO */}
-        <AddPlacePopup 
-          isOpen={isAddPlacePopupOpen} 
-          onClose={closeAllPopups} 
+        <AddPlacePopup
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
           onAddPlace={handleAddPlaceSubmit}
-          onCloseClick={handlePopupCloseClick} 
+          onCloseClick={handlePopupCloseClick}
         />
 
         {/* DELETE */}
@@ -316,16 +338,13 @@ function App() {
         ></ConfirmDeletePopup>
 
         {/* POPUP OPEN IMG  */}
-        <ImagePopup 
-          card={selectedCard} 
-          onClose={closeAllPopups} 
-        />
+        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
 
         <InfoTooltip
-          image={popupImage} 
-          title={popupTitle} 
-          onClose={closeAllPopups} 
-          isOpen={infoTooltip} 
+          image={popupImage}
+          title={popupTitle}
+          onClose={closeAllPopups}
+          isOpen={infoTooltip}
           onCloseClick={handlePopupCloseClick}
         />
       </div>
